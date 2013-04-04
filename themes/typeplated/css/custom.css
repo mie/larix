@@ -1,0 +1,92 @@
+html, body {
+  height: 100%;
+}
+
+#info {
+  background: hsla(0,0%,0%,0.25);
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  position: fixed;
+  margin-bottom: -60px;
+  margin-left: -20px;
+  padding-top: 80px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+#index {
+  float: right;
+  position: absolute;
+  right: 10%;
+  padding-top: 20px;
+}
+
+#wrap {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -60px;
+}
+
+.page {
+  background-attachment: fixed;
+  background-color: #000000;
+  background-image: url("../img/white_sand.png");
+  background-repeat: repeat;
+}
+
+#content {
+  overflow: visible;
+}
+
+.static-top {
+  position: static;
+  margin-bottom: 0;
+}
+
+.date {
+  -webkit-border-radius: 999px;
+  -moz-border-radius: 999px;
+  border-radius: 999px;
+  
+  width: 110px;
+  height: 110px;
+  padding: 8px;
+
+  /*background: #fff;*/
+  color: #666;
+  text-align: center;
+}
+
+center > .date {
+  padding-top: 20px;
+  border: 2px solid #666;
+}
+
+a,
+a:hover,
+a:focus {
+  text-decoration: none;
+}
+
+.titled {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.downed {
+  margin-top: 24px;
+}
+
+.upped {
+  margin-top: -24px;
+}
+
+.post-text {
+  margin-top: 24px;
+}
+
+p, li > code {
+  font-size: 18px;
+}

@@ -1,0 +1,19 @@
+# folder structure
+source_dir: "source"
+theme_dir: "themes"
+output_dir: "static"
+
+# general info
+title: "with flags flying"
+description: "mie's blog"
+author: "mie"
+#domain: "http://blog.com/" - tbd
+
+# themes
+#theme: "obtvse"
+#theme: "default"
+theme: "typeplated"
+
+# internal parameters
+# for index pages:
+posts_by_page: 10

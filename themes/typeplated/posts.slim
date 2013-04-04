@@ -1,0 +1,35 @@
+﻿-if not post.nil?
+  .row-fluid
+    .span2
+      center
+        .date
+          h4.delta: a href==post.time.url =post.time_utc.strftime('%d\'%m')
+          h5.epsilon =post.time.year
+    .span10
+      h2.beta =post.title
+  .row-fluid
+    .span10.offset2
+      -if post.tags != []
+        ul.nav-pills.upped
+          -for tag in post.tags
+            li.active: a href==tag.url =tag.name
+  .row-fluid
+    .span8.offset2.post-text 
+      ==post.html
+  hr
+  .row-fluid
+    .span8.offset2#disqus_thread
+      javascript:
+        var disqus_shortname = 'flagman';
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      noscript Please enable JavaScript to view the 
+      | <a href="http://disqus.com/?ref_noscript"> comments powered by Disqus.</a>
+      a.dsq-brlink href="http://disqus.com" comments powered by
+      | <span class="logo-disqus"> Disqus</span>
+    
+-else
+  h2.beta No posts

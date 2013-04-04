@@ -1,0 +1,47 @@
+﻿doctype html
+html
+  head
+    meta http-equiv="Content-Type" content="text/html; charset=utf-8"
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+    meta name="description" content==config['description']
+    meta name="author" content==config['author']
+    title =config['title']
+    link rel="stylesheet" href="css/main.css" type="text/css"
+    link rel="stylesheet" href="css/bootstrap.css" type="text/css"
+    /link rel="stylesheet" href="css/font-awesome.min.css" type="text/css"
+    link rel="stylesheet" href="css/animation.css" type="text/css"
+    link rel="stylesheet" href="css/fontello-codes.css" type="text/css"
+    link rel="stylesheet" href="css/fontello-embedded.css" type="text/css"
+    link rel="stylesheet" href="css/fontello-ie7-codes.css" type="text/css"
+    link rel="stylesheet" href="css/fontello-ie7.css" type="text/css"
+    link rel="stylesheet" href="css/fontello.css" type="text/css"
+    link rel="stylesheet" href="css/tomorrow.css" type="text/css"
+    link rel="stylesheet" href="css/custom.css" type="text/css"
+  body.page
+    #wrap
+      .container-fluid
+        .row-fluid
+          .span3.static-top#info
+            center
+              img.img-circle src="img/image.png"
+              p: a href='/index.html' =config['description']
+              h2.beta =config['title']
+              br
+              ul.nav-pills
+                li.active
+                  a href='https://twitter.com/flags'
+                    | My twitter 
+                    i.icon-twitter
+                li.active
+                  a href='https://github.com/mie'
+                    | My Github 
+                    i.icon-github
+          .span8#index
+            ==yield
+    noscript
+      div
+        img src="//mc.yandex.ru/watch/20464507" style="position:absolute; left:-9999px;" alt=""
+    script src="js/highlight.pack.js"
+    javascript:
+      (function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter20464507 = new Ya.Metrika({id:20464507, clickmap:true, trackLinks:true, accurateTrackBounce:true}); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks");
+      hljs.initHighlightingOnLoad();
