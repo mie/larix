@@ -43,7 +43,7 @@ class Post
 
   attr_reader :title, :time, :time_utc, :tags, :md, :html, :url
 
-  def initialize(text)
+  def initialize(text, url=nil)
     lines = text.split("\n")
     @title = lines[0] ? lines[0].split('@title: ')[-1] : ""
     @time_utc = lines[1] ? Time.parse(lines[1].split('@time: ')[-1].to_s).utc : Time.now.utc
@@ -51,7 +51,7 @@ class Post
     @tags = lines[2] && lines[2].split('@tags: ').size > 0 ? lines[2].split('@tags: ')[-1].split(%r{\s*\,\s*}).map {|t| Tag.new(t)} : []
     @md = lines.size > 3 ? lines[3..-1].join("\n") : ""
     @html = to_html(@md)
-    @url = "#{@time.year}-#{@time.month}-#{safe_title}.html"
+    @url = url+'.html' || "#{@time.year}-#{@time.month}-#{safe_title}.html"
   end
 
   def template
@@ -215,7 +215,7 @@ command = ARGV[0]
 blog = Blog.new
 
 case(command)
-  when "new_post" then blog.new_post(ARGV[1]) unless ARGV[1].nil?
+  when "post" then blog.new_post(ARGV[1], ARGV[2]) unless ARGV[1].nil?
   when "generate" then blog.generate
   else puts "exit"
 end

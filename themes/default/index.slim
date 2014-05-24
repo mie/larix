@@ -1,0 +1,41 @@
+﻿nav.navbar.navbar-default.navbar-fixed-top.navbar-custom role="navigation"
+  .container
+    .navbar-header
+      a.navbar-brand href="/index.html" mies blog
+    ul.nav.navbar-nav
+      li: .divider-vertical
+    ul.nav.navbar-nav.navbar-right
+      li
+        a.link href='http://twitter.com/flags'
+          img src='http://localhost:3000/img/twitter.png' alt=""
+.container#text
+  -if not posts.nil?
+    -if indexer == :tags
+      h4
+        | Посты по тэгу 
+        a class="square #{config['tags'][index_name.name] ? 'tag-'+config['tags'][index_name.name] : 'tag-general' }" href='#' #{index_name.name}
+      hr
+    -if indexer == :time
+      h4
+        | Посты за 
+        a.square.month #{index_name.name}
+      hr
+    -for pst in posts
+      .row
+        .col-lg-12
+          h6
+            a class="square #{config['tags'][pst.tag.name] ? 'tag-'+config['tags'][pst.tag.name] : 'tag-general' }" href==pst.tag.url =pst.tag.name
+            |  / 
+            a href==pst.time.url =pst.time_utc.strftime('%d/%m/%Y')
+          h3
+            a.title href==pst.url =pst.title
+      hr
+    -if pages.size > 1
+      hr
+      .row
+        .col-lg-12
+          ul
+            -if prev_url != ''
+              li.next: a href==prev_url Older &rarr;
+            -if next_url != ''
+              li.previous: a href==next_url &larr; Newer
