@@ -43,7 +43,7 @@ class Post
 
   attr_reader :title, :time, :time_utc, :tags, :md, :html, :url
 
-  def initialize(text, url=nil)
+  def initialize(text, url)
     lines = text.split("\n")
     @title = lines[0] ? lines[0].split('@title: ')[-1] : ""
     @time_utc = lines[1] ? Time.parse(lines[1].split('@time: ')[-1].to_s).utc : Time.now.utc
@@ -51,7 +51,11 @@ class Post
     @tags = lines[2] && lines[2].split('@tags: ').size > 0 ? lines[2].split('@tags: ')[-1].split(%r{\s*\,\s*}).map {|t| Tag.new(t)} : []
     @md = lines.size > 3 ? lines[3..-1].join("\n") : ""
     @html = to_html(@md)
-    @url = url+'.html' || "#{@time.year}-#{@time.month}-#{safe_title}.html"
+    @url = url || "#{@time.year}-#{@time.month}-#{safe_title}"
+  end
+
+  def html_url
+    @url + '.html'
   end
 
   def template
@@ -96,10 +100,10 @@ class Blog
     Dir.mkdir(File.join(@dir, @config['output_dir'])) unless File.directory?(File.join(@dir, @config['output_dir']))    
   end
   
-  def new_post(title)
+  def new_post(title, url=nil)
     unless title.nil? || title == ''
-      p = Post.new(title)
-      path = File.join(@dir, @config['source_dir'], "#{p.time.year}-#{p.time.month}-#{p.time.day}-#{p.safe_title}.md")
+      p = Post.new(title, url)
+      path = File.join(@dir, @config['source_dir'], "#{p.url}.md")
       save(path, p.template)
       path
     end
