@@ -3,8 +3,6 @@ require "slim"
 require "time"
 require "fileutils"
 
-# require "redcarpet"
-
 require File.join(File.dirname(__FILE__), 'post.rb')
 require File.join(File.dirname(__FILE__), 'indexer.rb')
 
@@ -28,9 +26,13 @@ module Larix
       @root = File.join(File.dirname(File.expand_path(__FILE__)), '..')
       @posts = []
       @indexers = []
+      static = File.join(File.dirname(__FILE__), '..', 'static')
+      source = File.join(File.dirname(__FILE__), '..', 'source')
+      Dir.mkdir(static) unless File.exists?(static)
+      Dir.mkdir(source) unless File.exists?(source)
     end
 
-    def new_post(filename=nil,title=nil)
+    def new_post(title=nil,filename=nil)
       post = Post.new(filename,title)
       new_file = File.join(@source, post.filename+'.md')
       File.open(new_file, 'w:UTF-8'){ |f|

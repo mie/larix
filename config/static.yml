@@ -15,6 +15,7 @@ theme: "default"
 # for index pages:
 per_page: 10
 css_tags:
+  general: general
   pacers: pacers
   soap: soap
   nba: nba

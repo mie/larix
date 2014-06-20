@@ -1,12 +1,12 @@
 #!/usr/bin/env ruby
 
-require File.join(File.dirname(__FILE__), '..', 'lib', 'static.rb')
+require File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib', 'static.rb'))
 
 begin
   command = ARGV[0]
-  s = Larix::Static.new('../config/static.yml')
+  s = Larix::Static.new( File.expand_path(File.join(File.dirname(__FILE__),'..','config','static.yml')) )
   case(command)
-    when "post" then s.new_post(ARGV[1], ARGV[2]) unless ARGV[1].nil?
+    when "post" then s.new_post(ARGV[1], ARGV[2])
     when "build" then s.build
     else puts "\n  usage: larix post 'My new post' ['my-new-post']\n         larix build\n\n"; exit
   end

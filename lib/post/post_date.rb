@@ -24,6 +24,10 @@ class PostDate < PostBase
     @year == another.year && @month == another.month
   end
 
+  def <=>(another)
+    @year <=> another.year && @month <=> another.month
+  end
+
   def l10n_date
     "#{@day} #{['января', 'февраля' , 'марта', 'апреля', 'мая' , 'июня', 'июля', 'августа' , 'сентября', 'октября', 'ноября' , 'декабря'][@month-1]} #{@year}"
   end
