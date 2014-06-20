@@ -1,41 +1,48 @@
 ﻿nav.navbar.navbar-default.navbar-fixed-top.navbar-custom role="navigation"
   .container
     .navbar-header
-      a.navbar-brand href="/index.html" mies blog
+      a.navbar-brand href="index.html" =config['title']
     ul.nav.navbar-nav
       li: .divider-vertical
+      -if indexer.pages.keys[0].indexer_title
+        li
+          p.navbar-text
+            =indexer.pages.keys[0].indexer_title
+            |  
+            =indexer.pages.keys[0].l10n
     ul.nav.navbar-nav.navbar-right
       li
         a.link href='http://twitter.com/flags'
           img src='http://localhost:3000/img/twitter.png' alt=""
-.container#text
-  -if not posts.nil?
-    -if indexer == :tags
-      h4
-        | Посты по тэгу 
-        a class="square #{config['tags'][index_name.name] ? 'tag-'+config['tags'][index_name.name] : 'tag-general' }" href='#' #{index_name.name}
-      hr
-    -if indexer == :time
-      h4
-        | Посты за 
-        a.square.month #{index_name.name}
-      hr
-    -for pst in posts
-      .row
-        .col-lg-12
-          h6
-            a class="square #{config['tags'][pst.tag.name] ? 'tag-'+config['tags'][pst.tag.name] : 'tag-general' }" href==pst.tag.url =pst.tag.name
-            |  / 
-            a href==pst.time.url =pst.time_utc.strftime('%d/%m/%Y')
-          h3
-            a.title href==pst.html_url =pst.title
-      hr
-    -if pages.size > 1
-      hr
-      .row
-        .col-lg-12
-          ul
-            -if prev_url != ''
-              li.next: a href==prev_url Older &rarr;
-            -if next_url != ''
-              li.previous: a href==next_url &larr; Newer
+.container
+  #title
+    -if not posts.nil?
+      / -if indexer.pages.keys[0].indexer_title
+      /   h4
+      /     =indexer.pages.keys[0].indexer_title
+      /     a.square.indexer-title href=indexer.pages.keys[0].url =indexer.pages.keys[0].l10n
+      / -if index != :title
+      /   h4
+      /     =l10n(:header, index)
+      /     /| Посты по тэгу 
+      /     a.square href==curr_link =group
+      /   hr
+      -for post in posts
+        .row
+          .col-lg-12
+            h6
+              a class="square#{(' tag-' + config['css_tags'][post.section.title]) if config['css_tags'][post.section.title]}" href=post.section.url =post.section.title
+              |  / 
+              a href==post.date.url =post.date.l10n_date
+            h3
+              a.title href==post.url =post.title
+        hr
+      -if num_pages > 1
+        hr
+        .row
+          .col-lg-12
+            ul
+              -if prev_page
+                li.next: a href==prev_page Older &rarr;
+              -if next_page
+                li.previous: a href==next_page &larr; Newer

@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+
+require File.join(File.dirname(__FILE__), '..', 'lib', 'static.rb')
+
+begin
+  command = ARGV[0]
+  s = Larix::Static.new('../config/static.yml')
+  case(command)
+    when "post" then s.new_post(ARGV[1], ARGV[2]) unless ARGV[1].nil?
+    when "build" then s.build
+    else puts "\n  usage: larix post 'My new post' ['my-new-post']\n         larix build\n\n"; exit
+  end
+rescue => e
+  STDERR.puts e.message
+  STDERR.puts e.backtrace.join("\n")
+  exit 1
+end

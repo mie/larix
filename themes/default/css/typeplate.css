@@ -100,13 +100,13 @@ h6,
 	margin-bottom: 1.65rem;
 }
 
-p {
-	margin: auto auto 1.5em; /* bottom margin for paragraphs */
-}
+/*p {
+	margin: auto auto 1.5em; 
+}*/
 
-p + p {
-	text-indent: 1.5em; /* indent subsequent paragraphs */
-	margin-top: -1.5em; /* no top margin on subsequent paragraphs */
+p {
+	text-indent: 1.5em; 
+	/*margin-top: -1.5em; */
 }
 
 abbr,
@@ -144,4 +144,3 @@ code {
 	white-space: pre;
 	font-family: monospace;
 }
-

@@ -2,7 +2,7 @@
   nav.navbar.navbar-default.navbar-fixed-top.navbar-custom role="navigation"
     .container
       .navbar-header
-        a.navbar-brand href="/index.html" mies blog
+        a.navbar-brand href="index.html" =config['title']
       ul.nav.navbar-nav
         li: .divider-vertical
         li: p.navbar-text =post.title
@@ -10,19 +10,20 @@
         li
           a.link href='http://twitter.com/share?text=This%20is%20so%20easy'
             img src='http://localhost:3000/img/twitter.png' alt=""
-  .container
-    .row
-      .col-lg-10.col-lg-offset-1#text
+  .container#main
+    .row#title
+      .col-lg-10.col-lg-offset-1
         h2.post-title =post.title
-    .row
+    .row#content
       .col-lg-8.col-lg-offset-2
-        ==post.html
-        h6
-          a href==post.time.url =post.time_utc.strftime('%d\'%m')
-          =post.time.year
+        ==post.to_html
+        h6.text-right
+          a href=post.date.url =post.date.l10n_date
+          |  by 
+          =author
         hr
         ul.tags
-          li: a href==post.tag.url =post.tag.name
+          li: a class="square#{(' tag-' + config['css_tags'][post.section.title]) if config['css_tags'][post.section.title]}" href=post.section.url =post.section.title
         hr
         #disqus_thread
         javascript:
@@ -32,9 +33,8 @@
             dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
             (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
           })();
-        noscript Please enable JavaScript to view the 
-        | <a href="http://disqus.com/?ref_noscript"> comments powered by Disqus.</a>
-        a.dsq-brlink href="http://disqus.com" comments powered by
-        | <span class="logo-disqus"> Disqus</span>
+        noscript
+          | Please enable JavaScript to view the 
+          a href="http://disqus.com/?ref_noscript" comments powered by Disqus.
 -else
   h2.beta No posts

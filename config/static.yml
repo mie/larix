@@ -1,0 +1,21 @@
+# folder structure
+source: "source"
+output: "static"
+themes: "themes"
+
+# general info
+title: "Здесь был mie"
+description: "mie"
+author: "mie"
+
+# themes
+theme: "default"
+
+# internal parameters
+# for index pages:
+per_page: 10
+css_tags:
+  pacers: pacers
+  soap: soap
+  nba: nba
+  ruby: ruby
