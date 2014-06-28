@@ -14,16 +14,16 @@ module Larix
       if filename && File.exists?(filename)
         source, @text = File.open(filename, 'r:UTF-8'){|f| f.read }.split(DELIMITER)
         @config = YAML.parse(source).to_ruby
-        @config.each{ |k,v|
-          name = "@#{k.downcase}"
-          if k.to_s == 'title'
-            instance_variable_set(name, v)
-          else
-            instance_variable_set(name, Object.const_get("Post#{k.to_s.capitalize}").new(v))
-          end
-        }
       end
-      @filename = File.basename(filename, '.md') || safe_text(@title)
+      @config.each{ |k,v|
+        name = "@#{k.downcase}"
+        if k.to_s == 'title'
+          instance_variable_set(name, v)
+        else
+          instance_variable_set(name, Object.const_get("Post#{k.to_s.capitalize}").new(v))
+        end
+      }
+      @filename = (File.basename(filename, '.md') if filename) || safe_text(@title)
       @url = "#{@filename}.html"
     end
 

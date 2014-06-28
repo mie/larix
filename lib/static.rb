@@ -32,7 +32,7 @@ module Larix
       Dir.mkdir(source) unless File.exists?(source)
     end
 
-    def new_post(title=nil,filename=nil)
+    def new_post(title='',filename=nil)
       post = Post.new(filename,title)
       new_file = File.join(@source, post.filename+'.md')
       File.open(new_file, 'w:UTF-8'){ |f|

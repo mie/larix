@@ -5,6 +5,7 @@ require File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib', 'static.
 begin
   command = ARGV[0]
   s = Larix::Static.new( File.expand_path(File.join(File.dirname(__FILE__),'..','config','static.yml')) )
+  p ARGV
   case(command)
     when "post" then s.new_post(ARGV[1], ARGV[2])
     when "build" then s.build
