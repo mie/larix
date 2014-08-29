@@ -10,11 +10,15 @@ body{
 }
 blockquote{
   font-family: sans-serif;
-  border-left: #1EAE8D solid 4px;
+  text-align: center;
+  font-size: 1.25em;
+  border-left: none;
+  /*border-left: #1EAE8D solid 4px;*/
   /*background-color: #28B99A;*/
-  background-color: #28B99A;
-  color: #fff;
-  padding: 32px 24px;
+  /*background-color: #28B99A;*/
+  /*color: #fff;*/
+  color: #006D4E;
+  padding: 32px 40px;
 }
 a{
   text-decoration: none;
