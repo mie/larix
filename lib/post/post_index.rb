@@ -20,5 +20,9 @@ class PostIndex < PostBase
     def indexer_title
       nil
     end
+
+    def l10n
+      ""
+    end
     
   end
