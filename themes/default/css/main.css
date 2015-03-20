@@ -1,35 +1,129 @@
 /*@import url(http://fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic&subset=latin,cyrillic);*/
 /*@import url(http://fonts.googleapis.com/css?family=Open+Sans:600&subset=latin,cyrillic);*/
-@import url(http://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700,700italic&subset=latin,cyrillic);
-html,body,p,h1,h2,h3,h4,h5,h6 {
-  font-family: 'PT Serif', serif;
+/*@import url(http://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700,700italic&subset=latin,cyrillic);*/
+
+@import url(http://fonts.googleapis.com/css?family=Noto+Serif:400,400italic,700,700italic&subset=latin,cyrillic);
+
+@font-face {
+  font-family: Merriweather;
+  src: url("../fonts/Merriweather-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: Merriweather;
+  font-weight: bold;
+  src: url("../fonts/Merriweather-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: Merriweather;
+  font-weight: bold;
+  font-style: italic;
+  src: url("../fonts/Merriweather-BoldItalic.ttf") format("truetype");
+}
+@font-face {
+  font-family: Merriweather;
+  font-style: italic;
+  src: url("../fonts/Merriweather-Italic.ttf") format("truetype");
+}
+@font-face {
+  font-family: Merriweather;
+  font-weight: 300;
+  font-style: italic;
+  src: url("../fonts/Merriweather-LightIt.ttf") format("truetype");
+}
+@font-face {
+  font-family: Merriweather;
+  font-weight: 300;
+  src: url("../fonts/Merriweather-Light.ttf") format("truetype");
+}
+
+/* - -- - */
+
+@font-face {
+  font-family: Heuristica;
+  src: url("../fonts/Heuristica-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: Heuristica;
+  font-weight: bold;
+  src: url("../fonts/Heuristica-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: Heuristica;
+  font-weight: bold;
+  font-style: italic;
+  src: url("../fonts/Heuristica-BoldItalic.ttf") format("truetype");
+}
+@font-face {
+  font-family: Heuristica;
+  font-style: italic;
+  src: url("../fonts/Heuristica-Italic.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: Lato;
+  font-weight: 200;
+  src: url("../fonts/Lato-Thin.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: Lato;
+  font-weight: 900;
+  src: url("../fonts/Lato-Heavy.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: Lato;
+  src: url("../fonts/Lato-Medium.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: Lato;
+  font-style: italic;
+  src: url("../fonts/Lato-Italic.ttf") format("truetype");
+}
+
+html,body,p {
+  font-family: Merriweather, serif;
+  color: #3f3f3f;
+}
+h1,h2,h3,h4,h5,h6{
+  font-family: Lato, serif;
+  color: #222;  
 }
 body{
-  /*background-color: #D6D7DB;*/
-  /*background-image: url(../img/greyzz.png);*/
-  background-repeat: repeat;
-  font-size: 20px;
+  background-color: transparent;
+  background-image: url(../img/cardboard.png);
+  /*background-repeat: repeat;*/
+  /*background-attachment: fixed;*/
+  /*font-size: 20px;*/
 }
 blockquote{
   /*font-family: sans-serif;*/
-  text-align: center;
+  /*text-align: center;
   font-size: 1.25em;
-  border-left: none;
+  border-left: none;*/
   /*border-left: #1EAE8D solid 4px;*/
   /*background-color: #28B99A;*/
   /*background-color: #28B99A;*/
   /*color: #fff;*/
-  color: #006D4E;
+  /*color: #006D4E;*/
+  background-color: #eee;
+  font-size: 1.1rem;
   padding: 32px 40px;
 }
-a{
+blockquote p{
+  text-indent: 0;
+}
+#content{
+  padding: 20px 0;
+}
+#content a, a.time{
   text-decoration: none;
   border-bottom: dashed 1px;
   /*background-color: #888;*/
   color: #1EAE8D;
-  /*padding: 2px 4px;*/
 }
-a:hover,a:active{
+#content a:hover, #content a:active, a.time:hover, a.time:active{
   /*background-color: #666;*/
   color: #28B99A;
   text-decoration: none;
@@ -51,7 +145,7 @@ a.navbar-brand{
   background-color: #fff;
   border-bottom: 0px none;
 }
-.navbar-custom .navbar-brand,.navbar-custom .navbar-nav>li>a{
+.navbar-custom-post .navbar-brand,.navbar-custom-post .navbar-nav>li>a{
   color:#1EAE8D;
   font-weight:500
 }
@@ -59,14 +153,14 @@ a.navbar-brand{
   line-height: 20px;
 }
 .navbar-custom .navbar-nav>li>a:hover,.navbar-custom .navbar-nav>.active>a,.navbar-custom .navbar-nav>.active>a:hover{
-  color:#1EAE8D;
+  color:#eee;
   background-color:#f9f9f9
 }
 .navbar .divider-vertical {
-height: 50px;
-margin: 0 9px;
-border-right: 1px solid #fff;
-border-left: 1px solid #f2f2f2;
+  height: 50px;
+  margin: 0 9px;
+  border-right: 1px solid #fff;
+  border-left: 1px solid #f2f2f2;
 }
 @media (max-width: 767px) {
 .navbar-collapse .nav > .divider-vertical {
@@ -115,6 +209,9 @@ ul.pager>li>a:hover{
   border-style: none;
   margin: 0px;
 }
+h3 {
+  margin: 16px 0px;
+}
 a.title{
   line-height: 1.12;
   color: #222;
@@ -147,30 +244,199 @@ a.title:hover:after{
   color: #f2f2f2;
 }
 #content h3{
-  background-color: #28B99A;
-  color: #fff;
-  padding: 8px 12px;
+  /*background-color: #28B99A;*/
+  color: #333;
+  /*padding: 8px 12px;
   width: 100%;
-  text-align: center;
+  text-align: center;*/
 }
 h1 a,h2 a,h3 a,h4 a,h5 a,h6 a{
   border-bottom: none;
 }
-h1,h2,h3,h4,h5,h6{
+/*h1,h2,h3,h4,h5,h6{
   line-height: 1.2em;
-}
+}*/
 p img{
-  width: 100%;
+  /*width: 100%;*/
   /*max-width: 750px;*/
   margin-left: -1.5em;
-  display: inline;
+  display:block;
+  margin-left:auto;
+  margin-right:auto;
 }
 #main{
-  border-right: #f2f2f2 solid 2px;
-  border-left: #f2f2f2 solid 2px;
+  /*border-right: #f2f2f2 solid 2px;
+  border-left: #f2f2f2 solid 2px;*/
   background-color: #fff;
   /*min-height: 500px;*/
 }
 .nav p{
   text-indent: 0;
+  color: #222;
+  font-weight: bold;
+}
+.navbar-custom-post {
+  -webkit-box-shadow: 0px 4px 4px 0px rgba(50, 50, 50, 0.75);
+  -moz-box-shadow:    0px 4px 4px 0px rgba(50, 50, 50, 0.75);
+  box-shadow:         0px 4px 4px 0px rgba(50, 50, 50, 0.75);
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+.fill {
+  min-height: 100%;
+}
+#main {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  /* Negative indent footer by it's height */
+}
+
+/*.shorten {
+   overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-box-orient: vertical;
+   -webkit-line-clamp: 2;
+   line-height: 23.7px;
+   max-height: 72px;
+}*/
+
+.shorten{
+  height: 72px;
+  overflow: hidden;
+}
+
+.post_index {
+  font-family: Lato;
+  text-align: left;
+}
+
+.post_index .square {
+  font-family: Merriweather;
+}
+
+code {
+  font-size: 1rem;
+  color: #3f3f3f;
+}
+
+.svg-wrap {
+  position: absolute;
+  width: 0px;
+  height: 0px;
+  overflow: hidden;
+}
+
+.image{
+  width:100%; height:100%; background: #eee;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: static;
+  display: table;
+  position: relative;
+}
+.content {
+  position:absolute; width:100%; top:100%;
+  background-color: transparent;
+}
+.image h1{
+  color: inherit;
+}
+.text-vertical-center{
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+.post-title-index{
+  margin-top: 30px;
+  margin-bottom: 10px;
+  font-weight: 800;
+  text-align: left;
+  color: inherit;
+}
+.post-subtitle{
+  margin: 0px 0px 10px;
+  font-weight: 300;
+  text-align: left;
+  color: inherit;
+}
+a.post-link{
+  color: #333;
+}
+a.post-link:hover{
+  color: #666;
+  text-decoration: none;
+}
+.post-meta{
+  color: #808080;
+  text-indent: 0;
+  font-style: italic;
+  margin-top: 0px;
+}
+.intro-header{
+  background: url('../img/home-bg.jpg') no-repeat scroll center center / cover transparent;
+  margin-bottom: 50px;
+  color: #eee;
+}
+.site-heading{
+  padding: 150px 0px;
+  text-align: center;
+  font-weight: 700;
+}
+.site-heading h1{
+  color: inherit;
+}
+hr.small{
+  max-width: 100px;
+  margin: 15px auto;
+  border-width: 4px;
+  border-color: #FFF;
+}
+.subheading{
+  font-size: 24px;
+  line-height: 1.1;
+  display: block;
+  font-family: Lato;
+  font-weight: 400;
+  margin: 10px 0px 0px;
+  color: inherit;
+}
+.navbar-custom {
+  transition: background-color 0.3s ease 0s;
+  transform: translate3d(0px, 0px, 0px);
+  backface-visibility: hidden;
+  background: none repeat scroll 0px 0px transparent;
+  border-bottom: 1px solid transparent;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  z-index: 3;
+}
+
+.navbar-custom .nav li a.nav-link {
+  color: #FFF;
+  /*padding: 20px;*/
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-family: Lato;
+}
+.navbar-custom a.navbar-brand, .navbar-custom p{
+  color: #fefefe;
+  font-weight: 700;
+  /*padding: 20px;*/
+  /*height: 60px;*/
+  font-family: Lato;
+}
+
+.navbar-default .navbar-brand:hover{
+  color: #666;
 }

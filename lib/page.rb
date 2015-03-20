@@ -3,27 +3,20 @@ require "redcarpet"
 
 module Larix
 
-  class Post
+  class Page
 
     DELIMITER = '%%'
 
-    attr_reader :filename, :title, :url, :date, :description, :image, :title_color
+    attr_reader :filename, :title, :url
 
     def initialize(filename=nil,title='')
-      @config = {'title' => title.to_s, 'date' => Time.now.utc, 'section' => 'general', 'description' => '', 'image' => '', 'title_color' => 'eee'}
+      @config = {'title' => title.to_s}
       @text = ''
       if filename && File.exists?(filename)
         source, @text = File.open(filename, 'r:UTF-8'){|f| f.read }.split(DELIMITER)
         @config = YAML.parse(source).to_ruby
       end
-      @config.each{ |k,v|
-        name = "@#{k.downcase}"
-        if ['title', 'description', 'image', 'title_color'].any? {|w| k.to_s == w}
-          instance_variable_set(name, v)
-        else
-          instance_variable_set(name, Object.const_get("Post#{k.to_s.capitalize}").new(v))
-        end
-      }
+      @title = @config['title']
       @filename = (File.basename(filename, '.md') if filename) || safe_text(@title)
       @url = "#{@filename}.html"
     end
@@ -55,35 +48,6 @@ PST
     def safe_text(t)
       st = t.downcase.tr('^a-z0-9-', '')
       st.empty? ? "post-#{Time.now.to_i}" : st
-    end
-
-    # #section and #date methods are needed for indexing and comparison
-    # For 'section' we can simply use its name, for 'time' - both month and year
-    # in a representation as a String
-    # Other possible indexers should be included in @config and have a getter
-    # method with a corresponing method name
-
-    def section
-      @section
-    end
-
-    def description
-      @description
-    end
-
-    def date
-      # "#{@date.month}-#{@date.year}"
-      @date
-    end
-
-    # Fake method to collect all posts using same technique
-
-    def index
-      PostIndex.new
-    end
-
-    def <=>(another)
-      another.date <=> date
     end
 
   end

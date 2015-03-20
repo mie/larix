@@ -1,20 +1,26 @@
-﻿nav.navbar.navbar-default.navbar-fixed-top.navbar-custom role="navigation"
+﻿nav.navbar.navbar-default.navbar-fixed-top.navbar-custom-post
   .container
     .navbar-header
-      a.navbar-brand href="index.html" =config['title']
-    ul.nav.navbar-nav
-      li: .divider-vertical
-      -if indexer.pages.keys[0].indexer_title
+      button.navbar-toggle.collapsed type="button" data-toggle="collapse" data-target="#navbar-collapse-1"
+        span.sr-only Включить навигацию
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      a.navbar-brand href="/index.html" =config['title']
+    .collapse.navbar-collapse#navbar-collapse-1
+      ul.nav.navbar-nav
+        li: .divider-vertical
+        -if indexer.pages.keys[0].indexer_title
+          li
+            p.navbar-text
+              =indexer.pages.keys[0].indexer_title
+              |  
+              =title.l10n
+      ul.nav.navbar-nav.navbar-right
         li
-          p.navbar-text
-            =indexer.pages.keys[0].indexer_title
-            |  
-            =title.l10n
-    ul.nav.navbar-nav.navbar-right
-      li
-        a.link href='http://twitter.com/flags'
-          img src='http://localhost:3000/img/twitter.png' alt=""
-.container
+          a.link href='http://twitter.com/flags'
+            img src='http://localhost:3000/img/twitter.png' alt=""
+.container.fill#main
   #title
     -if not posts.nil?
       / -if indexer.pages.keys[0].indexer_title
@@ -29,13 +35,21 @@
       /   hr
       -for post in posts
         .row
-          .col-lg-12
-            h6
-              a class="square#{(' tag-' + config['css_tags'][post.section.title]) if config['css_tags'][post.section.title]}" href=post.section.url =post.section.title
-              |  / 
-              a href==post.date.url =post.date.l10n_date
-            h3
-              a.title href==post.url =post.title
+          .col-lg-10.col-md-10.col-lg-sm-10.col-xs-10.post_index
+            a.post-link href=post.url
+              h2.post-title-index =post.title
+              h4.post-subtitle =post.description
+            p.post-meta
+              a class="square#{(' tag-' + config['css_tags'][post.section.title]) if config['css_tags'][post.section.title]}" href=post.section.url =post.section.title 
+              |  Опубликовал  
+              =author
+              |  
+              a href=post.date.url =post.date.l10n_date
+            / a class="square#{(' tag-' + config['css_tags'][post.section.title]) if config['css_tags'][post.section.title]}" href=post.section.url =post.section.title
+            / |  |  
+            / a.time href==post.date.url =post.date.l10n_date
+            / h3
+            /   a.title href==post.url =post.title
         hr
       -if num_pages > 1
         hr

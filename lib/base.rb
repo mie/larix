@@ -27,10 +27,12 @@ module Larix
     end
 
     def copy_assets
-      ['css', 'js', 'img', 'font'].each { |catalog|
-        source = File.join(@root, @themes, @theme, catalog)
-        FileUtils.cp_r(source, File.join(@root, @output)) if File.directory?(source)
+      theme = File.join(@root, @themes, @theme)
+      Dir.chdir(theme)
+      Dir['*/'].each { |catalog|
+        FileUtils.copy_entry(File.join(theme, catalog), File.join(@static_dir, catalog))
       }
+      FileUtils.copy_entry(File.join(@source_dir, 'images'), File.join(@static_dir, 'images'))
     end
 
     refine Array do

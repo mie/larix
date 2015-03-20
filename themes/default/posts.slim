@@ -2,39 +2,75 @@
   nav.navbar.navbar-default.navbar-fixed-top.navbar-custom role="navigation"
     .container
       .navbar-header
-        a.navbar-brand href="index.html" =config['title']
-      ul.nav.navbar-nav
-        li: .divider-vertical
-        li: p.navbar-text =post.title
-      ul.nav.navbar-nav.navbar-right
-        li
-          a.link href='http://twitter.com/share?text=This%20is%20so%20easy'
-            img src='http://localhost:3000/img/twitter.png' alt=""
-  .container#main
-    .row#title
-      .col-lg-10.col-lg-offset-1
-        h2.post-title =post.title
-    .row#content
-      .col-lg-8.col-lg-offset-2
-        ==post.to_html
-        h6.text-right
-          a href=post.date.url =post.date.l10n_date
-          |  by 
-          =author
-        hr
-        ul.tags
-          li: a class="square#{(' tag-' + config['css_tags'][post.section.title]) if config['css_tags'][post.section.title]}" href=post.section.url =post.section.title
-        hr
-        #disqus_thread
-        javascript:
-          var disqus_shortname = 'flagman';
-          (function() {
-            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-          })();
-        noscript
-          | Please enable JavaScript to view the 
-          a href="http://disqus.com/?ref_noscript" comments powered by Disqus.
+        button.navbar-toggle.collapsed type="button" data-toggle="collapse" data-target="#navbar-collapse-1"
+          span.sr-only Включить навигацию
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+        a.navbar-brand href="/index.html" style="color:##{post.title_color};" =config['title']
+      .collapse.navbar-collapse#navbar-collapse-1
+        ul.nav.navbar-nav
+          li: .divider-vertical
+          li: p.navbar-text style="color:##{post.title_color};" =post.title
+        ul.nav.navbar-nav.navbar-right
+          li
+            a.link href="https://twitter.com/intent/tweet?text=#{post.title}"
+              img src='http://localhost:3000/img/twitter.png' alt=""
+  .image style="background-image:url(/images/#{post.image})"
+    .text-vertical-center style="color:##{post.title_color};"
+      h1.typl8-alpha.post-title =post.title
+      .text-center.typl8-delta =post.description
+      i.credentials
+        | by 
+        strong =author 
+        |  :: 
+        =post.date.l10n_date
+  .content
+    .container#main
+      nav.nav-reveal.hidden-xs
+        -unless prev_post.nil?
+          a.prev href=prev_post.url
+            span.icon-wrap
+              svg.icon width="32" height="32" viewBox="0 0 64 64"
+                use xlink:href="#arrow-left-3"
+            div
+              h5.shorten
+                =prev_post.title
+              span =prev_post.date.l10n_date
+              img src="images/thumb_#{prev_post.image}" alt="Previous thumb"
+        -unless next_post.nil?
+          a.next href=next_post.url
+            span.icon-wrap
+              svg.icon width="32" height="32" viewBox="0 0 64 64"
+                use xlink:href="#arrow-right-3"
+            div
+              h5.shorten
+                =next_post.title
+              span =next_post.date.l10n_date
+              img src="images/thumb_#{next_post.image}" alt="Next thumb"
+      .row#content
+        .col-lg-8.col-lg-offset-2
+          ==post.to_html
+          hr
+          #disqus_thread
+          javascript:
+            var disqus_shortname = 'flagman';
+            (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+            $(document).ready(function(){
+              $(".shorten").dotdotdot();
+            });
+          noscript
+            | Please enable JavaScript to view the 
+            a href="http://disqus.com/?ref_noscript" comments powered by Disqus.
+    .svg-wrap
+      svg width="64" height="64" viewBox="0 0 64 64"
+          path#arrow-left-3 d="M44.797 17.28l0.003 29.44-25.6-14.72z"
+      svg width="64" height="64" viewBox="0 0 64 64"
+        path#arrow-right-3 d="M19.203 17.28l-0.003 29.44 25.6-14.72z"
+  
 -else
   h2.beta No posts

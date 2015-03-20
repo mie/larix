@@ -4,9 +4,29 @@ html
     meta charset="utf-8"
     title =title
     link href="css/normalize.css" rel="stylesheet"
-    link href="css/bootstrap.min.css" rel="stylesheet"
+    link href="css/bootstrap.css" rel="stylesheet"
     link href="css/typeplate.css" rel="stylesheet"
     link href="css/main.css" rel="stylesheet"
+    link href="css/component.css" rel="stylesheet"
+    / link href="css/component.css" rel="stylesheet"
   body
+    / div.st-container#st-container
+    /   nav.st-menu.st-effect-1#menu-1
+    /     h2.icon.icon-lab Sidebar
+    /     ul
+    /       li: a.icon.icon-data href="#" Data Management
+    /       li: a.icon.icon-location href="#" Location
+    /       li: a.icon.icon-study href="#" Study
+    /       li: a.icon.icon-photo href="#" Collections
+    /       li: a.icon.icon-wallet href="#" Credits
+    /   .st-pusher
+    /     .st-content
+    /       .st-content-inner
     ==yield
     /script src="js/highlight.pack.js"
+    / script src="js/modernizr.custom.js"
+    script src="js/jquery-1.11.2.min.js"
+    script src="js/bootstrap.min.js"
+    script src="js/jquery.dotdotdot.min.js"
+    script src="js/clean-blog.js"
+    / script src="js/sidebarEffects.js"

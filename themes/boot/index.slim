@@ -1,0 +1,65 @@
+﻿nav.navbar.navbar-default.navbar-custom.navbar-fixed-top
+  .container-fluid
+    .navbar-header.page-scroll
+      button.navbar-toggle type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      a.navbar-brand href="/" =config['title']
+    .collapse.navbar-collapse#bs-example-navbar-collapse-1
+      ul.nav.navbar-nav.navbar-left
+        -if indexer.pages.keys[0].indexer_title
+          li
+            p.navbar-text
+              =indexer.pages.keys[0].indexer_title
+              |  
+              =title.l10n
+      ul.nav.navbar-nav.navbar-right
+        -for page in pages
+          li
+            a href=page.url =page.title
+header.intro-header style="background-image: url('img/home-bg.jpg')"
+  .container
+    .row
+      .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
+        .site-heading
+          h1 =config['title']
+          hr.small
+          span.subheading Наблюдение этого безумного мира
+-if not posts.nil?
+  .container
+    .row
+      .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
+        -for post in posts
+          .post-preview
+            a href=post.url
+              h2.post-title =post.title
+              h3.post-subtitle =post.description
+              p.post-meta
+                | Опубликовал  
+                =author
+                |  
+                =post.date.l10n_date
+              hr
+        -if num_pages > 1
+          hr
+          .row
+            .col-lg-12
+              ul.pager
+                -if prev_page
+                  li.next
+                    a href=prev_page Older &rarr;
+                -if next_page
+                  li.prev
+                    a href=next_page &larr; Newer
+
+        / -if num_pages > 1
+        /   hr
+        /   .row
+        /     .col-lg-12
+        /       ul
+        /         -if prev_page
+        /           li.next: a href==prev_page Older &rarr;
+        /         -if next_page
+        /           li.previous: a href==next_page &larr; Newer
